@@ -2,7 +2,11 @@ langchain
 langchain-openai
 langchain-community
 langchain-core
+langchain-huggingface
+langchain-ollama
+langgraph
 huggingface_hub
 python-dotenv
-langchain-huggingface
-langgraph
+fastapi
+uvicorn[standard]
+google-adk[extensions]
