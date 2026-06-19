@@ -1,7 +1,7 @@
 from langchain_core.prompts import PromptTemplate
 from langchain_ollama import OllamaLLM
 from langchain_openai import ChatOpenAI
-from config import LLM_PROVIDER
+from config import LLM_PROVIDER  
 
 # Select LLM
 if LLM_PROVIDER == "ollama":
@@ -69,7 +69,7 @@ Generated Plan:
 """
 
     return {
-        "status": "planning",
+        "status": "success",
         "plan": output
     }
 

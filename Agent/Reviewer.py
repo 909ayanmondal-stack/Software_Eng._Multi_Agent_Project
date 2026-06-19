@@ -1,7 +1,7 @@
 from langchain_core.prompts import PromptTemplate
 from langchain_ollama import OllamaLLM
 from langchain_openai import ChatOpenAI
-from config import LLM_PROVIDER
+from config import LLM_PROVIDER  
 import ast
 
 # Select LLM
@@ -116,7 +116,7 @@ Review:
     memory[thread_id] = memory[thread_id][-5000:]
 
     return {
-        "status": "reviewing",
+        "status": "success",
         "review": output
     }
 

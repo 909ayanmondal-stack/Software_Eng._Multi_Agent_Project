@@ -1,7 +1,7 @@
 from langchain_core.prompts import PromptTemplate
 from langchain_ollama import OllamaLLM
 from langchain_openai import ChatOpenAI
-from config import LLM_PROVIDER
+from config import LLM_PROVIDER  
 
 # Select LLM
 if LLM_PROVIDER == "ollama":
@@ -46,7 +46,7 @@ def coder(task: str, thread_id: str = "default") -> dict:
 
     # handle both OpenAI + Ollama
     output = result.content if hasattr(result, "content") else result
-
+    output = output.replace("```python", "").replace("```", "").strip()
     memory[thread_id] = f"""
 {history}
 
@@ -58,7 +58,7 @@ Code:
 """
 
     return {
-        "status": "coding",
+        "status": "success",
         "code": output
     }
 

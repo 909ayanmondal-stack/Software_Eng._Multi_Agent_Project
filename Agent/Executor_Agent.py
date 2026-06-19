@@ -3,7 +3,7 @@ import subprocess
 import os
 import shutil
 
-def executor(code: str, language: str = "python") -> dict:
+def executor(code: str, language: str = "python",thread_id: str = "default") -> dict:
     """Runs code in multiple languages and returns output or error"""
 
     try:
