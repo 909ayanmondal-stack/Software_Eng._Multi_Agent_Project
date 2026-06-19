@@ -130,8 +130,8 @@ Open `http://localhost:8000/docs` for the interactive API documentation.
 
 ### Option 3 — Docker
 ```bash
-docker build -t se-agent .
-docker run -p 8000:8000 se-agent
+docker build -t alpha-agent .
+docker run -p 8000:8000 alpha-agent
 ```
 
 ---
