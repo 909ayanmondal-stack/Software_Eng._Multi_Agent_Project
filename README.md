@@ -1,232 +1,156 @@
-# 🤖 Software Engineering Multi-Agent System
+# 🧠 Software Engineering Multi-Agent System
 
-An AI-powered software engineering assistant that takes a requirement and automatically plans, writes, reviews, and executes code — using a multi-agent architecture powered by Google ADK, LangChain, and Ollama.
+## 📌 Overview
 
----
+This project is an AI-powered multi-agent system that simulates a real software development workflow. It breaks down a user requirement into multiple stages handled by specialized agents:
 
-## 🧠 Architecture
+- 🧩 Planner Agent → creates a development plan  
+- 💻 Coder Agent → generates code based on the plan  
+- 🔍 Reviewer Agent → reviews and improves the code  
+- ⚙️ Executor Agent → executes and validates the final output  
 
-The system follows a **hub-and-spoke model** where the Root Agent orchestrates 4 specialized sub-agents:
-
-```
-User Request
-      ↓
- Root Agent (Google ADK + LiteLLM)
-      ↓
-  ┌───┴────────────────────────┐
-  ↓          ↓         ↓       ↓
-Planner   Coder   Reviewer  Executor
-  ↓          ↓         ↓       ↓
- Plan      Code     Review  Output
-```
-
-| Agent | Role | Description |
-|---|---|---|
-| **Root Agent** | Orchestrator | Reads user input, decides which agent(s) to call |
-| **Planner Agent** | Task Planner | Breaks requirements into numbered step-by-step plans |
-| **Coder Agent** | Code Writer | Writes code for each step of the plan |
-| **Reviewer Agent** | Code Reviewer | Reviews code for bugs, security issues, improvements |
-| **Executor Agent** | Code Runner | Runs the code and returns output or errors |
+The system is built using FastAPI and follows a modular agent-based architecture.
 
 ---
 
-## 🛠️ Tech Stack
+## 🚀 Features
 
-| Technology | Purpose |
-|---|---|
-| **Google ADK** | Root agent orchestration and tool routing |
-| **LangChain** | Prompt templates, chains, and memory in sub-agents |
-| **Ollama (qwen3:8b)** | Local LLM — runs 100% offline, no paid API needed |
-| **OpenAI (optional)** | Alternative LLM provider via config switch |
-| **FastAPI** | REST API endpoints for each agent |
-| **Docker** | Containerization for portable deployment |
-
----
-
-## 📁 Project Structure
-
-```
-software-engineering-agent/
-    Agent/
-        __init__.py          # Exports root_agent for ADK
-        Planner_Agent.py     # Planner sub-agent
-        Coder_Agent.py       # Coder sub-agent
-        Reviewer.py          # Reviewer sub-agent
-        Executor_Agent.py    # Executor sub-agent
-        Root_Agent.py        # Root agent (orchestrator)
-    API/
-        __init__.py
-        main.py              # FastAPI endpoints
-    notebooks/               # Reference notebooks
-    config.py                # LLM provider configuration
-    requirements.txt         # Python dependencies
-    Dockerfile               # Docker build instructions
-    .env.example             # Environment variable template
-    README.md
-```
+- Multi-agent AI workflow for software development tasks  
+- Structured breakdown of requirements into executable plans  
+- Automated code generation  
+- Code review and improvement loop  
+- Execution layer for validating output  
+- REST API built with FastAPI  
+- Modular and extensible architecture  
 
 ---
 
-## ⚙️ Setup & Installation
+## 🏗️ Architecture
 
-### Prerequisites
-- Python 3.10+
-- [Ollama](https://ollama.com) installed locally
-- Git
+User Request  
+→ Planner Agent (creates step-by-step plan)  
+→ Coder Agent (generates code)  
+→ Reviewer Agent (reviews and improves code)  
+→ Executor Agent (executes and validates output)  
+→ Final Response returned via API  
+
+---
+
+## 📂 Project Structure
+
+Software_Engineer_Multi_Agent_Project/  
+│  
+├── Agent/  
+│   ├── Planner_Agent.py  
+│   ├── Coder_Agent.py  
+│   ├── Reviewer.py  
+│   └── Executor_Agent.py  
+│  
+├── API/  
+│   └── main.py  
+│  
+├── .env  
+├── requirements.txt  
+└── README.md  
+
+---
+
+## ⚙️ Installation
 
 ### 1. Clone the repository
-```bash
-git clone https://github.com/909ayanmondal-stack/Software_Eng._Multi_Agent_Project.git
-cd Software_Eng._Multi_Agent_Project
-```
+git clone https://github.com/909ayanmondal-stack/Software_Eng._Multi_Agent_Project.git  
+cd Software_Eng._Multi_Agent_Project  
 
-### 2. Create and activate virtual environment
-```bash
-python -m venv venv
-source venv/bin/activate  # Mac/Linux
-venv\Scripts\activate     # Windows
-```
+### 2. Create virtual environment (optional but recommended)
+python -m venv venv  
+source venv/bin/activate   # Mac/Linux  
+venv\Scripts\activate      # Windows  
 
 ### 3. Install dependencies
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Pull the Ollama model
-```bash
-ollama pull qwen3:8b
-```
-
-### 5. Configure environment
-```bash
-cp .env.example .env
-```
-Edit `.env` if using OpenAI:
-```
-OPENAI_API_KEY=sk-your-key-here
-```
-
-### 6. Configure LLM provider
-Edit `config.py`:
-```python
-LLM_PROVIDER = "ollama"   # or "openai"
-```
+pip install -r requirements.txt  
 
 ---
 
-## 🚀 Running the Project
+## ▶️ Running the Project
 
-### Option 1 — ADK Web UI (for testing agents visually)
-```bash
-adk web --port 8000
-```
-Open `http://127.0.0.1:8000` in your browser, select the `Agent` app, and start chatting.
+Start the FastAPI server:
 
-### Option 2 — FastAPI (REST API)
-```bash
-uvicorn API.main:app --reload
-```
-Open `http://localhost:8000/docs` for the interactive API documentation.
+uvicorn API.main:app --reload  
 
-### Option 3 — Docker
-```bash
-docker build -t alpha-agent .
-docker run -p 8000:8000 alpha-agent
-```
+Server will run at:
+http://127.0.0.1:8000  
 
 ---
 
-## 🔌 API Endpoints
+## 📡 API Endpoints
 
-| Method | Endpoint | Description |
-|---|---|---|
-| POST | `/plan` | Takes a requirement, returns a step-by-step plan |
-| POST | `/code` | Takes a plan, returns written code |
-| POST | `/review` | Takes code, returns a review report |
-| POST | `/execute` | Takes code, runs it, returns output or error |
-| POST | `/run-all` | Takes a requirement, runs all 4 agents in sequence |
+### 🔹 Plan Generation
+POST /plan  
 
-### Example Request
-```json
-POST /plan
+Request:
 {
-  "requirement": "Build a login system in Python"
+  "requirement": "Build a REST API for a todo app"
 }
-```
 
-### Example Response
-```json
+Response:
 {
-  "status": "planning",
-  "plan": "1. Create a User model\n2. Hash password using bcrypt\n3. Generate JWT token..."
+  "plan": "Step-by-step development plan generated by Planner Agent"
 }
-```
 
 ---
 
-## 💬 Example Usage (ADK Web UI)
+### 🔹 Full Pipeline (if implemented)
+POST /run  
 
-| You type | What happens |
-|---|---|
-| `Build a login system in Python` | Root Agent calls Planner → returns step-by-step plan |
-| `Now write the code` | Root Agent calls Coder → returns Python code |
-| `Review this code: def add(a,b): return a+b` | Root Agent calls Reviewer → returns review report |
-| `Run this code: print("Hello World")` | Root Agent calls Executor → returns output |
-| `Build a calculator end to end` | Root Agent calls all 4 agents in sequence |
+Request:
+{
+  "requirement": "Build a calculator API"
+}
 
----
-
-## 🧪 Testing Individual Agents
-
-```bash
-python -m Agent.Planner_Agent
-python -m Agent.Coder_Agent
-python -m Agent.Reviewer
-python -m Agent.Executor_Agent
-```
+Response:
+{
+  "plan": "...",
+  "code": "...",
+  "review": "...",
+  "execution_result": "..."
+}
 
 ---
 
-## ⚠️ Known Limitations
+## 🧠 Tech Stack
 
-- **Casual conversation**: `qwen3:8b` (8B parameter model) may occasionally route greetings to the Planner tool — this is a known limitation of smaller local models. Use OpenAI for more consistent routing behavior.
-- **Java/C++ execution**: Executor currently supports Python and JavaScript only. Java/C++ support is planned as a future improvement (requires compile step).
-- **Speed**: Local Ollama models are slower than cloud APIs. Full pipeline (plan → code → review → execute) may take 3-10 minutes on a MacBook Air.
-
----
-
-## 🔮 Future Improvements
-
-- [ ] Add Java and C++ execution support in Executor Agent
-- [ ] Persistent memory across sessions (database-backed)
-- [ ] Automatic LLM fallback (OpenAI → Ollama if API fails)
-- [ ] Streaming responses in FastAPI endpoints
-- [ ] Frontend UI for the pipeline
+- Python  
+- FastAPI  
+- Pydantic  
+- Uvicorn  
+- LLM-based Agents (if used)
 
 ---
 
-## 🐳 Docker Hub
+## 🔧 Future Improvements
 
-```bash
-docker pull yourusername/se-agent:latest
-```
+- Add parallel agent execution  
+- Improve memory between agents  
+- Add vector database for context retention  
+- Add UI dashboard for visualization  
+- Dockerize the system  
+- Add authentication  
 
 ---
 
-## 📬 Postman Collection
+## 📌 Use Case
 
-Import `postman_collection.json` from the repo root to test all 5 API endpoints instantly.
+This project demonstrates how AI agents can collaborate like a software engineering team to automate development tasks.
 
 ---
 
 ## 👨‍💻 Author
 
-**Ayan Mondal**
-NIT Kurukshetra
-[GitHub](https://github.com/909ayanmondal-stack)
+Ayan Mondal  
+GitHub: https://github.com/909ayanmondal-stack
 
 ---
 
-## 📄 License
+## ⭐ Support
 
-MIT License
+If you like this project, consider giving it a star ⭐
