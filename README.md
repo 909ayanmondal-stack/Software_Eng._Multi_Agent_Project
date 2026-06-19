@@ -54,7 +54,7 @@ software-engineering-agent/
         Reviewer.py          # Reviewer sub-agent
         Executor_Agent.py    # Executor sub-agent
         Root_Agent.py        # Root agent (orchestrator)
-    api/
+    API/
         __init__.py
         main.py              # FastAPI endpoints
     notebooks/               # Reference notebooks
@@ -76,8 +76,8 @@ software-engineering-agent/
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/software-engineering-agent.git
-cd software-engineering-agent
+git clone https://github.com/909ayanmondal-stack/Software_Eng._Multi_Agent_Project.git
+cd Software_Eng._Multi_Agent_Project
 ```
 
 ### 2. Create and activate virtual environment
@@ -124,7 +124,7 @@ Open `http://127.0.0.1:8000` in your browser, select the `Agent` app, and start 
 
 ### Option 2 — FastAPI (REST API)
 ```bash
-uvicorn api.main:app --reload
+uvicorn API.main:app --reload
 ```
 Open `http://localhost:8000/docs` for the interactive API documentation.
 
@@ -223,7 +223,7 @@ Import `postman_collection.json` from the repo root to test all 5 API endpoints 
 
 **Ayan Mondal**
 NIT Kurukshetra
-[GitHub](https://github.com/yourusername)
+[GitHub](https://github.com/909ayanmondal-stack)
 
 ---
 
