@@ -147,6 +147,7 @@ This project demonstrates how AI agents can collaborate like a software engineer
 ## 👨‍💻 Author
 
 Ayan Mondal  
+NIT KURUKSHETRA
 GitHub: https://github.com/909ayanmondal-stack
 
 ---
