@@ -6,12 +6,16 @@ from Agent.Planner_Agent import planner
 from Agent.Coder_Agent import coder
 from Agent.Reviewer import reviewer
 from Agent.Executor_Agent import executor
+from API.auth import router as auth_router
+from API.auth import get_current_user
+from fastapi import Depends
 
 app = FastAPI(
     title="Software Engineering Multi-Agent System",
     description="AI-powered agents that plan, write, review and execute code.",
     version="1.0.0" 
 )
+app.include_router(auth_router, prefix="/auth", tags=["Authentication"]) 
 
 # --- Updated Schemas ---
 
@@ -87,3 +91,7 @@ def run_all(request: RunAllRequest):
         "review": review_result,
         "execution": execute_result
     }
+@app.post("/plan")
+def plan(request: PlanRequest, current_user: str = Depends(get_current_user)):
+    result = planner(requirement=request.requirement, thread_id=request.thread_id)
+    return {"plan": result, "requested_by": current_user}
