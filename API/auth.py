@@ -116,7 +116,7 @@ def change_password(request:ChangePassword,current_user:str=Depends(get_current_
     new_hashed=hash_password(request.new_password)
     users_collection.update_one(
     {"username": current_user},
-    {"$set": {"password": new_hashed}}  # ← make sure $set is there
+    {"$set": {"password": new_hashed}}  
 )
     return {"message":"Password changed successfully"}
 
