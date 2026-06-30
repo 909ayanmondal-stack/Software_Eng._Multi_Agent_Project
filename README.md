@@ -1,142 +1,293 @@
-# 🚀 Software Engineering Multi-Agent Project
+# 🤖 Software Engineering Multi-Agent System
 
-An advanced FastAPI-based backend system implementing authentication, user management, and secure APIs using JWT authentication and MongoDB. This project follows a modular, scalable backend architecture similar to production-grade systems.
-
----
-
-## 📌 Features
-- User Registration & Login  
-- JWT Authentication (Secure Token System)  
-- Password Hashing (bcrypt / passlib)  
-- Protected User Profile API  
-- Change Password Feature  
-- MongoDB Database Integration  
-- Modular FastAPI Router Structure  
-- Swagger UI API Documentation  
+An AI-powered software engineering assistant that takes a requirement and automatically plans, writes, reviews, and executes code — using a multi-agent architecture powered by Google ADK, LangChain, and Ollama. Now with JWT authentication and MongoDB Atlas integration.
 
 ---
 
-## 🏗️ Tech Stack
-- FastAPI  
-- MongoDB  
-- JWT (PyJWT)  
-- Uvicorn  
-- Python  
-- Passlib / bcrypt  
+## 🧠 Architecture
+
+The system follows a **hub-and-spoke model** where the Root Agent orchestrates 4 specialized sub-agents:
+
+```
+User Request (with JWT token)
+      ↓
+ Root Agent (Google ADK + LiteLLM)
+      ↓
+  ┌───┴────────────────────────┐
+  ↓          ↓         ↓       ↓
+Planner   Coder   Reviewer  Executor
+  ↓          ↓         ↓       ↓
+ Plan      Code     Review  Output
+      ↓
+ MongoDB Atlas (stores history)
+```
+
+| Agent | Role | Description |
+|---|---|---|
+| **Root Agent** | Orchestrator | Reads user input, decides which agent(s) to call |
+| **Planner Agent** | Task Planner | Breaks requirements into numbered step-by-step plans |
+| **Coder Agent** | Code Writer | Writes code for each step of the plan |
+| **Reviewer Agent** | Code Reviewer | Reviews code for bugs, security issues, improvements |
+| **Executor Agent** | Code Runner | Runs the code and returns output or errors |
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| **Google ADK** | Root agent orchestration and tool routing |
+| **LangChain** | Prompt templates, chains, and memory in sub-agents |
+| **Ollama (qwen3:8b)** | Local LLM — runs 100% offline, no paid API needed |
+| **OpenAI (optional)** | Alternative LLM provider via config switch |
+| **FastAPI** | REST API endpoints for each agent |
+| **MongoDB Atlas** | Cloud database for user accounts and history |
+| **JWT + bcrypt** | Secure authentication and password hashing |
+| **Docker** | Containerization for portable deployment |
 
 ---
 
 ## 📁 Project Structure
-Software_Eng._Multi_Agent_Project/
-│
-├── API/
-│   ├── auth.py
-│   ├── models.py
-│   ├── utils.py
-│   └── dependencies.py
-│
-├── main.py
-├── requirements.txt
-└── .env (not included)
+
+```
+Software_Engineer_Multi-Agent_project/
+    Agent/
+        __init__.py          # Exports root_agent for ADK
+        Planner_Agent.py     # Planner sub-agent
+        Coder_Agent.py       # Coder sub-agent
+        Reviewer.py          # Reviewer sub-agent
+        Executor_Agent.py    # Executor sub-agent
+        Root_Agent.py        # Root agent (orchestrator)
+    API/
+        __init__.py
+        main.py              # FastAPI endpoints
+        auth.py              # Authentication logic
+        database.py          # MongoDB connection
+    models/
+        __init__.py
+        user_model.py        # User data models
+    config.py                # LLM provider configuration
+    requirements.txt         # Python dependencies
+    Dockerfile               # Docker build instructions
+    .env.example             # Environment variable template
+    FASTAPI_PROJECT.postman_collection.json  # Postman collection for testing
+    README.md
+```
 
 ---
 
-## ⚙️ Installation & Setup
+## ⚙️ Setup & Installation
 
-### 1. Clone Repository
-git clone https://github.com/909ayanmondal-stack/Software_Eng._Multi_Agent_Project.git  
-cd Software_Eng._Multi_Agent_Project  
+### Prerequisites
+- Python 3.10+
+- [Ollama](https://ollama.com) installed locally
+- MongoDB Atlas account (free)
+- Git
 
-### 2. Create Virtual Environment
-python -m venv venv  
-source venv/bin/activate (Mac/Linux)  
-venv\Scripts\activate (Windows)  
+### 1. Clone the repository
+```bash
+git clone https://github.com/909ayanmondal-stack/Software_Eng._Multi_Agent_Project.git
+cd Software_Eng._Multi_Agent_Project
+```
 
-### 3. Install Dependencies
-pip install -r requirements.txt  
+### 2. Create and activate virtual environment
+```bash
+python -m venv venv
+source venv/bin/activate  # Mac/Linux
+venv\Scripts\activate     # Windows
+```
 
-### 4. Setup Environment Variables
-Create a `.env` file:
+### 3. Install dependencies
+```bash
+pip install -r requirements.txt
+```
 
-SECRET_KEY=your_secret_key  
-ALGORITHM=HS256  
-MONGODB_URL=your_mongodb_connection_string  
+### 4. Pull the Ollama model
+```bash
+ollama pull qwen3:8b
+```
 
-### 5. Run Application
-uvicorn API.main:app --reload  
+### 5. Configure environment
+```bash
+cp .env.example .env
+```
+Edit `.env` with your credentials:
+```
+OPENAI_API_KEY=sk-your-key-here
+MONGODB_URL=mongodb+srv://username:password@cluster.mongodb.net/se_agent_db
+SECRET_KEY=your-secret-key-here
+JWT_ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+```
+
+### 6. Configure LLM provider
+Edit `config.py`:
+```python
+LLM_PROVIDER = "ollama"   # or "openai"
+```
 
 ---
 
-## 📡 API Endpoints
+## 🚀 Running the Project
 
-### Register User
-POST /auth/register  
+### Option 1 — FastAPI (REST API)
+```bash
+uvicorn API.main:app --reload
+```
+Open `http://localhost:8000/docs` for the interactive API documentation.
 
-### Login User
-POST /auth/login  
+### Option 2 — ADK Web UI (for testing agents visually)
+```bash
+adk web --port 8000
+```
+Open `http://127.0.0.1:8000` in your browser, select the `Agent` app, and start chatting.
 
-### Get Profile (Protected)
-GET /auth/profile  
-Authorization: Bearer <token>  
-
-### Change Password (Protected)
-POST /auth/change-password  
+### Option 3 — Docker
+```bash
+docker build -t se-agent .
+docker run -p 8000:8000 --env-file .env se-agent
+```
 
 ---
 
-## 🔐 Authentication Flow
-User registers → User logs in → JWT token generated → Token used for protected routes → Server validates token using SECRET_KEY
+## 🔐 Authentication Endpoints
 
----
+| Method | Endpoint | Description | Auth Required |
+|---|---|---|---|
+| POST | `/auth/register` | Register new user | ❌ |
+| POST | `/auth/login` | Login and get JWT token | ❌ |
+| GET | `/auth/profile` | Get current user profile | ✅ |
+| POST | `/auth/logout` | Logout current user | ✅ |
+| POST | `/auth/change-password` | Change user password | ✅ |
 
-## 🧪 Example Requests
-
-### Register
+### Register Example:
+```json
+POST /auth/register
 {
   "username": "ayan",
-  "email": "ayan@example.com",
-  "password": "123456"
+  "email": "ayan@gmail.com",
+  "password": "test123"
 }
+```
 
----
-
-### Login (Form Data)
-username: ayan  
-password: 123456  
-
----
-
-### Change Password
+### Login Example:
+```json
+POST /auth/login
 {
-  "old_password": "123456",
-  "new_password": "newpass123"
+  "username": "ayan",
+  "password": "test123"
 }
+```
+
+### Login Response:
+```json
+{
+  "access_token": "eyJhbGc...",
+  "token_type": "bearer",
+  "username": "ayan"
+}
+```
 
 ---
 
-## 🚀 Future Improvements
-- Refresh Token System  
-- Role-Based Access Control  
-- Docker Deployment  
-- Logging System  
-- Unit Testing  
+## 🔌 Agent API Endpoints
+
+All agent endpoints require JWT token in Authorization header:
+```
+Authorization: Bearer <your_token>
+```
+
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/plan` | Takes a requirement, returns a step-by-step plan |
+| POST | `/code` | Takes a plan, returns written code |
+| POST | `/review` | Takes code, returns a review report |
+| POST | `/execute` | Takes code, runs it, returns output or error |
+| POST | `/run-all` | Takes a requirement, runs all 4 agents in sequence |
+
+### Example Request:
+```json
+POST /run-all
+{
+  "requirement": "Build a fibonacci calculator in Python"
+}
+```
+
+### Example Response:
+```json
+{
+  "plan": "1. Define fibonacci function...",
+  "code": "def fibonacci(n)...",
+  "review": "Code looks good. Suggested improvements...",
+  "execution": {"status": "success", "output": "[0, 1, 1, 2, 3, 5, 8]"}
+}
+```
 
 ---
 
-## ⚠️ Security Notes
-- Never upload `.env` file  
-- Never expose SECRET_KEY  
-- Always hash passwords  
-- Use HTTPS in production  
+## 💬 Example Usage (ADK Web UI)
+
+| You type | What happens |
+|---|---|
+| `Build a login system in Python` | Root Agent calls Planner → returns step-by-step plan |
+| `Now write the code` | Root Agent calls Coder → returns Python code |
+| `Review this code: def add(a,b): return a+b` | Root Agent calls Reviewer → returns review report |
+| `Run this code: print("Hello World")` | Root Agent calls Executor → returns output |
+| `Build a calculator end to end` | Root Agent calls all 4 agents in sequence |
+
+---
+
+## 🧪 Testing Individual Agents
+
+```bash
+python -m Agent.Planner_Agent
+python -m Agent.Coder_Agent
+python -m Agent.Reviewer
+python -m Agent.Executor_Agent
+```
+
+---
+
+## ⚠️ Known Limitations
+
+- **Casual conversation**: `qwen3:8b` (8B parameter model) may occasionally route greetings to the Planner tool — this is a known limitation of smaller local models. Use OpenAI for more consistent routing behavior.
+- **Java/C++ execution**: Executor currently supports Python and JavaScript only. Java/C++ support is planned as a future improvement (requires compile step).
+- **Speed**: Local Ollama models are slower than cloud APIs. Full pipeline (plan → code → review → execute) may take 3-10 minutes on a MacBook Air.
+
+---
+
+## 🔮 Future Improvements
+
+- [ ] Add Java and C++ execution support in Executor Agent
+- [ ] Automatic LLM fallback (OpenAI → Ollama if API fails)
+- [ ] Streaming responses in FastAPI endpoints
+- [ ] React frontend with login page and chat UI
+- [ ] Railway/cloud deployment for global access
+
+---
+
+## 🐳 Docker Hub
+
+```bash
+docker pull 909ayanmondal/se-agent:latest
+```
+
+---
+
+## 📬 Postman Collection
+
+Import `FASTAPI_PROJECT.postman_collection.json` from the repo root to test all API endpoints instantly (auth + agent endpoints).
 
 ---
 
 ## 👨‍💻 Author
-Ayan Mondal
-NIT KURUKSHETRA
-GitHub: https://github.com/909ayanmondal-stack  
+
+**Ayan Mondal**
+B.Tech, NIT Kurukshetra
+[GitHub](https://github.com/909ayanmondal-stack)
 
 ---
 
-## 📜 License
+## 📄 License
+
 MIT License
