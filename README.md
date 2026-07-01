@@ -283,7 +283,7 @@ Import `FASTAPI_PROJECT.postman_collection.json` from the repo root to test all 
 ## 👨‍💻 Author
 
 **Ayan Mondal**
-B.Tech, NIT Kurukshetra
+MCA, NIT Kurukshetra
 [GitHub](https://github.com/909ayanmondal-stack)
 
 ---
