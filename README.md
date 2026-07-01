@@ -269,7 +269,7 @@ python -m Agent.Executor_Agent
 ## 🐳 Docker Hub
 
 ```bash
-docker pull 909ayanmondal/se-agent:latest
+docker pull 909ayanmondal/alpha-agent:latest
 ```
 
 ---
