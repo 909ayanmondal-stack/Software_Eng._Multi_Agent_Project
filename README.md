@@ -1,806 +1,641 @@
-# 🤖 AI-Powered Multi-Agent Software Engineering System
+# Software Engineering Multi-Agent AI System
 
-### An Agentic AI System for Intelligent Software Development Workflows
+An AI-powered software engineering platform that uses multiple specialized AI agents to assist with the software development lifecycle — from requirement analysis and architecture design to code generation, review, and testing.
 
-This project is a **Multi-Agent AI Software Engineering System** designed to automate and assist different stages of the software development lifecycle using specialized AI agents.
+## 🚀 Overview
 
-Instead of depending on a single LLM prompt, the system follows a **multi-agent architecture**, where different agents perform specialized responsibilities such as requirement analysis, planning, code generation, code review, testing, and improvement.
+The **Software Engineering Multi-Agent AI System** is designed to simulate a collaborative software engineering workflow using specialized AI agents.
 
-The project demonstrates practical skills in **Generative AI, Agentic AI, LLM orchestration, software engineering, automation, modular system design, and AI-assisted development**.
+Instead of relying on a single AI model for every task, the system divides the development process into multiple responsibilities. Each agent focuses on a specific stage of software development and contributes to the overall workflow.
 
----
+The project includes:
 
-## 🎯 Project Objective
-
-Traditional software development requires developers to manually perform multiple activities:
-
-* Understand requirements
-* Design the solution
-* Break the problem into tasks
-* Write code
-* Review the implementation
-* Identify bugs
-* Test the application
-* Improve the solution
-
-This project explores how **AI agents can collaborate as a software engineering team** to automate parts of this workflow.
-
-### Core Idea
-
-```text
-User Requirement
-       ↓
-Requirement Analysis
-       ↓
-Planning / Architecture
-       ↓
-Task Decomposition
-       ↓
-Code Generation
-       ↓
-Code Review
-       ↓
-Testing / Validation
-       ↓
-Improvement
-       ↓
-Final Output
-```
+* React-based frontend
+* FastAPI backend
+* MongoDB database
+* JWT-based authentication
+* Specialized AI agents
+* REST APIs
+* Modular backend architecture
+* AI-assisted software development workflow
 
 ---
 
-# 🚀 Key Features
+## ✨ Features
 
-### 🤖 Multi-Agent Architecture
+### 🤖 Multi-Agent Software Engineering
 
-The system divides software development responsibilities among specialized AI agents instead of using one general-purpose agent.
+The system is designed around specialized agents for different software engineering tasks:
 
-Each agent has a defined role and contributes to the overall workflow.
+1. **Requirement Analyst**
 
-### 🧠 Agentic AI Workflow
+   * Understands user requirements
+   * Breaks requirements into structured tasks
 
-Agents can process information, generate outputs, pass context to other agents, and participate in a structured software-development pipeline.
+2. **Architecture Agent**
 
-### 📋 Requirement Analysis
+   * Analyzes requirements
+   * Helps design the software architecture and development flow
 
-The system converts natural-language requirements into structured development tasks.
+3. **Code Agent**
 
-### 🏗️ Software Planning
+   * Generates implementation-oriented code
+   * Uses the output of previous stages as context
 
-The planning stage can determine:
+4. **Review Agent**
 
-* Required components
-* Project structure
-* Development tasks
-* Implementation sequence
-* Technical requirements
+   * Reviews generated code
+   * Identifies potential issues and improvements
 
-### 💻 AI-Assisted Code Generation
+5. **Testing Agent**
 
-The system uses LLM-based reasoning to assist with software implementation and code generation.
-
-### 🔍 Code Review
-
-Generated implementation can be analyzed to identify:
-
-* Potential bugs
-* Incorrect logic
-* Code-quality problems
-* Missing requirements
-* Possible improvements
-
-### 🧪 Testing & Validation
-
-The workflow can incorporate validation of generated software before producing the final result.
-
-### 🔄 Iterative Development
-
-Instead of simply generating code once, the architecture supports an iterative approach:
-
-```text
-Generate
-   ↓
-Review
-   ↓
-Identify Problems
-   ↓
-Improve
-   ↓
-Validate
-```
+   * Helps analyze functionality
+   * Identifies potential testing requirements and issues
 
 ---
 
-# 🧠 Multi-Agent Architecture
-
-The project follows the concept of **specialized AI agents working together**.
-
-A conceptual workflow is:
+## 🏗️ System Architecture
 
 ```text
-                    ┌─────────────────────┐
-                    │        User         │
-                    │   Requirements      │
-                    └──────────┬──────────┘
+                    ┌──────────────────────┐
+                    │      React UI        │
+                    │   Frontend Client    │
+                    └──────────┬───────────┘
                                │
+                               │ REST API
                                ▼
-                    ┌─────────────────────┐
-                    │   Orchestrator /    │
-                    │   Workflow Manager  │
-                    └──────────┬──────────┘
+                    ┌──────────────────────┐
+                    │      FastAPI         │
+                    │      Backend         │
+                    └──────────┬───────────┘
                                │
               ┌────────────────┼────────────────┐
               │                │                │
               ▼                ▼                ▼
        ┌────────────┐   ┌────────────┐   ┌────────────┐
-       │  Planner   │   │ Architect  │   │ Researcher │
-       │   Agent    │   │   Agent    │   │   Agent    │
-       └─────┬──────┘   └─────┬──────┘   └─────┬──────┘
+       │   Auth     │   │ AI Agents  │   │  Database  │
+       │   Module   │   │  Workflow  │   │  MongoDB   │
+       └────────────┘   └─────┬──────┘   └────────────┘
+                              │
+             ┌────────────────┼────────────────┐
+             ▼                ▼                ▼
+        Requirement      Architecture       Code
+          Agent              Agent           Agent
              │                │                │
              └────────────────┼────────────────┘
                               ▼
-                       ┌────────────┐
-                       │   Coder    │
-                       │   Agent    │
-                       └─────┬──────┘
-                             │
-                             ▼
-                       ┌────────────┐
-                       │  Reviewer  │
-                       │   Agent    │
-                       └─────┬──────┘
-                             │
-                             ▼
-                       ┌────────────┐
-                       │  Testing   │
-                       │ /Validator │
-                       └─────┬──────┘
-                             │
-                             ▼
-                       ┌────────────┐
-                       │   Final    │
-                       │   Output   │
-                       └────────────┘
-```
-
-> **Note:** The exact agent names and workflow depend on the implementation in the repository.
-
----
-
-# 👨‍💻 Software Engineering Capabilities
-
-This project is particularly relevant from a software-engineering placement perspective because it demonstrates more than LLM prompting.
-
-### Engineering Concepts
-
-* Modular architecture
-* Separation of responsibilities
-* Agent orchestration
-* Workflow management
-* Structured data flow
-* Context passing between agents
-* Task decomposition
-* Error handling
-* Validation
-* Iterative improvement
-* Automated development workflows
-
----
-
-# 🤖 Generative AI / Agentic AI
-
-The project demonstrates practical use of modern AI concepts including:
-
-* Large Language Models
-* Generative AI
-* AI Agents
-* Multi-Agent Systems
-* Prompt Engineering
-* Agent Orchestration
-* Structured LLM Outputs
-* Context Management
-* Tool-Based AI Workflows
-* AI-assisted Software Development
-
-The main architectural idea is:
-
-```text
-LLM
- ↓
-Specialized Agents
- ↓
-Agent Collaboration
- ↓
-Software Engineering Workflow
- ↓
-Validated Result
+                       Review / Testing
+                            Agents
 ```
 
 ---
 
-# 🔄 End-to-End Workflow
+# 🛠️ Tech Stack
 
-## 1. User Requirement
+## Frontend
 
-The developer provides a natural-language software requirement.
+* React.js
+* Vite
+* Tailwind CSS
+* JavaScript
+* Fetch API
+* Browser Local Storage
 
-Example:
-
-```text
-Build a web application for managing student records.
-```
-
----
-
-## 2. Requirement Analysis
-
-The AI analyzes the requirement and identifies the expected functionality.
-
-```text
-Requirement
-     ↓
-Features
-     ↓
-Technical Requirements
-     ↓
-Development Tasks
-```
-
----
-
-## 3. Planning
-
-The planning agent converts the requirement into an actionable development plan.
-
-For example:
-
-```text
-1. Create project structure
-2. Create backend
-3. Create database models
-4. Create APIs
-5. Create frontend
-6. Connect frontend and backend
-7. Test application
-```
-
----
-
-## 4. Architecture
-
-The system determines how different components should interact.
-
-Example:
-
-```text
-Frontend
-    ↓
-REST API
-    ↓
-Backend
-    ↓
-Database
-```
-
----
-
-## 5. Implementation
-
-The coding stage generates or modifies software according to the development plan.
-
----
-
-## 6. Review
-
-The generated implementation is reviewed for possible:
-
-* Logical errors
-* Missing functionality
-* Poor implementation
-* Requirement mismatches
-* Code-quality issues
-
----
-
-## 7. Testing
-
-The implementation is validated against the expected requirements.
-
----
-
-## 8. Improvement
-
-If problems are identified:
-
-```text
-Problem
-   ↓
-Review
-   ↓
-Correction
-   ↓
-Re-test
-```
-
-This creates a feedback loop instead of treating the first generated output as the final result.
-
----
-
-# 🏗️ System Design
-
-The project follows a modular architecture so that individual agents can be developed and improved independently.
-
-```text
-                    ┌──────────────────┐
-                    │   User Input     │
-                    └────────┬─────────┘
-                             │
-                             ▼
-                    ┌──────────────────┐
-                    │  Orchestrator    │
-                    └────────┬─────────┘
-                             │
-             ┌───────────────┼───────────────┐
-             │               │               │
-             ▼               ▼               ▼
-        Planning         Research        Architecture
-          Agent            Agent             Agent
-             │               │               │
-             └───────────────┼───────────────┘
-                             ▼
-                       Coding Agent
-                             │
-                             ▼
-                      Review Agent
-                             │
-                             ▼
-                     Testing Agent
-                             │
-                             ▼
-                       Final Result
-```
-
----
-
-# 🧩 Why Multi-Agent Instead of a Single LLM?
-
-A single LLM can generate code, but a multi-agent system separates responsibilities.
-
-### Single-Agent Approach
-
-```text
-User
- ↓
-LLM
- ↓
-Code
-```
-
-### Multi-Agent Approach
-
-```text
-User
- ↓
-Planner
- ↓
-Architect
- ↓
-Coder
- ↓
-Reviewer
- ↓
-Tester
- ↓
-Improved Code
-```
-
-This separation makes the system more modular and allows individual stages to be evaluated and improved independently.
-
----
-
-# 💼 Placement-Relevant Skills Demonstrated
-
-This project can demonstrate experience in:
-
-### AI / ML
-
-* Generative AI
-* LLMs
-* Agentic AI
-* Multi-Agent Systems
-* Prompt Engineering
-* AI Workflow Design
-
-### Software Engineering
-
-* System Design
-* Modular Architecture
-* Requirement Analysis
-* Task Decomposition
-* Code Generation
-* Code Review
-* Testing
-* Debugging
-
-### Backend / Development
-
-* API development
-* Application architecture
-* Data flow
-* Error handling
-* Integration
-
-### Engineering Practices
-
-* Separation of Concerns
-* Reusable components
-* Structured workflows
-* Maintainable architecture
-* Iterative development
-
----
-
-# 📊 Project Engineering Highlights
-
-| Area                 | Demonstrated Concept       |
-| -------------------- | -------------------------- |
-| AI                   | LLM / Generative AI        |
-| Agentic AI           | Specialized AI agents      |
-| Architecture         | Multi-agent workflow       |
-| Orchestration        | Agent coordination         |
-| Software Engineering | Automated SDLC workflow    |
-| Planning             | Requirement → tasks        |
-| Coding               | AI-assisted implementation |
-| Review               | Automated code analysis    |
-| Testing              | Validation workflow        |
-| Scalability          | Modular agent architecture |
-
----
-
-# 🛠️ Technology Stack
-
-> Update this section with the exact technologies implemented in the repository.
-
-### AI / GenAI
-
-* Large Language Models
-* Generative AI
-* AI Agents
-* Prompt Engineering
-* Multi-Agent Orchestration
-
-### Backend
+## Backend
 
 * Python
-* API layer
-* Agent workflow implementation
+* FastAPI
+* Pydantic
+* JWT Authentication
+* Passlib / bcrypt
+* REST APIs
 
-### Development
+## Database
+
+* MongoDB
+
+## AI / Agent Layer
+
+* Large Language Models
+* Multi-Agent Architecture
+* Agent-based software engineering workflow
+
+## Development Tools
 
 * Git
 * GitHub
-* Environment-based configuration
-
-### Deployment
-
-* Docker / containerization *(if implemented)*
+* VS Code
+* npm
+* Python
+* Docker
 
 ---
 
 # 📁 Project Structure
 
-The project is organized around the separation of AI agents and supporting components.
-
 ```text
 Software_Eng._Multi_Agent_Project/
 │
-├── agents/
-│   ├── planner/
-│   ├── architect/
-│   ├── coder/
-│   ├── reviewer/
-│   └── tester/
+├── frontend/
+│   │
+│   ├── public/
+│   │
+│   ├── src/
+│   │   ├── assets/
+│   │   │
+│   │   ├── components/
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── Hero.jsx
+│   │   │   ├── Workflow.jsx
+│   │   │   ├── Features.jsx
+│   │   │   └── Footer.jsx
+│   │   │
+│   │   ├── Pages/
+│   │   │   ├── Login.jsx
+│   │   │   └── Register.jsx
+│   │   │
+│   │   ├── services/
+│   │   │   └── api.js
+│   │   │
+│   │   ├── App.jsx
+│   │   ├── App.css
+│   │   ├── index.css
+│   │   └── main.jsx
+│   │
+│   ├── index.html
+│   ├── package.json
+│   ├── package-lock.json
+│   └── vite.config.js
 │
-├── tools/
+├── backend/
+│   │
+│   ├── api/
+│   ├── agents/
+│   ├── models/
+│   ├── services/
+│   ├── utils/
+│   ├── auth.py
+│   ├── main.py
+│   └── ...
 │
-├── workflows/
-│
-├── utils/
-│
-├── config/
-│
-├── tests/
-│
-├── main.py
-│
+├── .env
 ├── requirements.txt
-│
-├── .env.example
-│
 └── README.md
 ```
 
-> Replace the structure above with the repository's actual structure before publishing.
+> The backend directory structure may vary depending on the current implementation.
 
 ---
 
-# ⚙️ Installation
+# 🔐 Authentication
+
+The application implements authentication using **JWT (JSON Web Tokens)**.
+
+### Authentication Flow
+
+```text
+User
+ │
+ ▼
+React Login/Register
+ │
+ ▼
+FastAPI Authentication API
+ │
+ ├── Validate credentials
+ │
+ ├── Hash / verify password
+ │
+ └── Generate JWT
+ │
+ ▼
+React stores access token
+ │
+ ▼
+Authenticated API requests
+ │
+ ▼
+FastAPI verifies JWT
+```
+
+### Available Authentication APIs
+
+| Method | Endpoint                | Purpose                   |
+| ------ | ----------------------- | ------------------------- |
+| POST   | `/auth/register`        | Register a new user       |
+| POST   | `/auth/login`           | Authenticate user         |
+| GET    | `/auth/profile`         | Get authenticated profile |
+| POST   | `/auth/logout`          | Logout                    |
+| POST   | `/auth/change-password` | Change password           |
+
+---
+
+# 🔌 Backend API
+
+The backend exposes REST APIs through FastAPI.
+
+The API layer is responsible for:
+
+* Authentication
+* User management
+* Agent workflow execution
+* Request validation
+* Communication with AI services
+* Database interaction
+* Returning structured responses to the frontend
+
+FastAPI also provides interactive API documentation during development.
+
+After starting the backend, the documentation is typically available at:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+---
+
+# 🖥️ Frontend
+
+The frontend is built using **React + Vite + Tailwind CSS**.
+
+The frontend provides:
+
+* Landing page
+* Authentication UI
+* Login
+* Registration
+* Agent workflow presentation
+* API communication
+* Responsive UI
+
+### Frontend → Backend Communication
+
+```text
+React Component
+      │
+      ▼
+API Service
+      │
+      ▼
+Fetch()
+      │
+      ▼
+FastAPI Endpoint
+      │
+      ▼
+Backend Logic
+      │
+      ▼
+Response
+      │
+      ▼
+React UI
+```
+
+---
+
+# ⚙️ Environment Variables
+
+Create a `.env` file inside the `frontend/` directory:
+
+```env
+VITE_API_URL=http://127.0.0.1:8000
+```
+
+For the backend, configure the required environment variables according to your local setup.
+
+Example:
+
+```env
+SECRET_KEY=your_secret_key
+JWT_ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+MONGODB_URL=your_mongodb_connection_string
+```
+
+> Never commit real API keys, passwords, database credentials, or secret keys to GitHub.
+
+---
+
+# 🚀 Installation & Setup
 
 ## 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/909ayanmondal-stack/Software_Eng._Multi_Agent_Project.git
+```
+
+```bash
 cd Software_Eng._Multi_Agent_Project
 ```
 
-## 2. Create Virtual Environment
+---
 
-```bash
-python -m venv venv
-```
+# 🐍 Backend Setup
+
+Create and activate a virtual environment:
 
 ### macOS / Linux
 
 ```bash
+python3 -m venv venv
 source venv/bin/activate
 ```
 
 ### Windows
 
 ```bash
+python -m venv venv
 venv\Scripts\activate
 ```
 
-## 3. Install Dependencies
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## 4. Configure Environment Variables
+Configure your backend environment variables.
 
-Create a `.env` file and add the required API keys/configuration.
-
-```env
-LLM_API_KEY=your_api_key
-```
-
-Never commit API keys or other secrets to GitHub.
-
-## 5. Run the Application
+Start the FastAPI server:
 
 ```bash
-python main.py
+uvicorn main:app --reload
 ```
 
-> Use the actual startup command defined by the project.
+The backend should then be available at:
+
+```text
+http://127.0.0.1:8000
+```
+
+API documentation:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+> If your `main.py` is located inside another package, adjust the Uvicorn module path accordingly.
 
 ---
 
-# 🔐 Security Considerations
+# ⚛️ Frontend Setup
 
-The project should follow standard practices for AI applications:
+Move into the frontend directory:
 
-* Keep API keys in environment variables
-* Never commit secrets
-* Validate external inputs
-* Restrict file/system access for AI tools
-* Validate AI-generated outputs
-* Apply appropriate permissions to tools
-* Avoid blindly executing generated code
+```bash
+cd frontend
+```
 
-For production deployment, additional sandboxing and execution isolation should be implemented when agents are allowed to modify or execute software.
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+The frontend will normally be available at:
+
+```text
+http://localhost:5173
+```
 
 ---
 
-# 📈 Scalability & Production Roadmap
+# 🔄 Application Workflow
 
-The current project can be extended into a more production-oriented AI software-engineering platform.
+The intended software engineering workflow is:
 
-### Phase 1 — Reliability
+```text
+User Requirement
+       │
+       ▼
+Requirement Analysis
+       │
+       ▼
+Architecture Design
+       │
+       ▼
+Code Generation
+       │
+       ▼
+Code Review
+       │
+       ▼
+Testing
+       │
+       ▼
+Improved Software Solution
+```
 
-* Structured agent outputs
-* Better validation
-* Retry mechanisms
-* Error handling
-* Logging
+Each stage can contribute information to subsequent stages, allowing the system to follow a structured software development process.
 
-### Phase 2 — Evaluation
+---
 
+# 🧠 Multi-Agent Approach
+
+A traditional single-agent workflow can attempt to perform every software engineering task using one AI process.
+
+This project instead separates responsibilities into specialized agents.
+
+```text
+                 User Requirement
+                        │
+                        ▼
+              Requirement Agent
+                        │
+                        ▼
+             Architecture Agent
+                        │
+                        ▼
+                  Code Agent
+                        │
+                        ▼
+                 Review Agent
+                        │
+                        ▼
+                Testing Agent
+```
+
+This modular approach makes individual responsibilities easier to organize, modify, and extend.
+
+---
+
+# 📡 API Integration
+
+The frontend communicates with the backend through HTTP requests.
+
+Example authentication request:
+
+```javascript
+fetch(`${API_URL}/auth/login`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    username,
+    password,
+  }),
+})
+```
+
+Authenticated requests use the JWT access token:
+
+```text
+Authorization: Bearer <access_token>
+```
+
+---
+
+# 🗄️ Database
+
+The backend uses **MongoDB** for persistent data storage.
+
+The database layer is responsible for storing application data such as user information and other project-specific data required by the backend.
+
+---
+
+# 🔒 Security
+
+Security-related implementation includes:
+
+* Password hashing
+* JWT-based authentication
+* Protected API endpoints
+* Environment variables for secrets
+* Bearer-token authorization
+* Input validation through Pydantic models
+
+Secrets and credentials should be stored in environment variables rather than committed to source control.
+
+---
+
+# 🧪 Testing
+
+The backend APIs can be tested using:
+
+* FastAPI Swagger UI
+* Postman
+* Browser/client requests
+* Frontend integration
+
+Swagger documentation:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+---
+
+# 📸 Screenshots
+
+Screenshots can be added here to demonstrate the running application.
+
+Recommended screenshots:
+
+* Landing page
+* Login/Register page
+* AI agent workflow/dashboard
+* Generated agent output
+
+Example:
+
+```markdown
+## Screenshots
+
+### Landing Page
+
+![Landing Page](screenshots/landing-page.png)
+
+### Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+```
+
+---
+
+# 🐳 Docker
+
+The project can be containerized using Docker for consistent development and deployment environments.
+
+Example workflow:
+
+```bash
+docker build -t software-engineering-ai .
+```
+
+```bash
+docker run -p 8000:8000 software-engineering-ai
+```
+
+> Update the commands according to the Docker configuration currently present in the repository.
+
+---
+
+# 📌 Future Improvements
+
+Planned improvements may include:
+
+* Complete AI-agent orchestration
+* More specialized software engineering agents
+* Improved agent communication
+* RAG-based project knowledge
+* Persistent project/workspace management
 * Automated test generation
-* Agent evaluation datasets
-* Code-quality metrics
-* Task-success metrics
-* LLM response evaluation
+* Code execution and validation
+* GitHub repository integration
+* Deployment pipeline
+* Production deployment
+* Improved dashboard and visualization
+* Enhanced monitoring and logging
 
-### Phase 3 — Production Infrastructure
+---
 
-* Background job queues
-* Redis
-* PostgreSQL / scalable database
-* Docker
-* CI/CD
-* Cloud deployment
-* Monitoring
-* Observability
+# 🎯 Project Goals
 
-### Phase 4 — Advanced Agent System
+The primary goal of this project is to explore how **AI agents can collaborate to support software engineering activities**.
+
+The project combines:
 
 ```text
-Requirement
-     ↓
-Supervisor
-     ↓
-Research ───────┐
-     ↓          │
-Planning        │
-     ↓          │
-Architecture    │
-     ↓          │
-Coding          │
-     ↓          │
-Testing ←───────┘
-     ↓
-Review
-     ↓
-Final Delivery
-```
-
----
-
-# 🧪 Testing Strategy
-
-A production version should evaluate the system at multiple levels.
-
-### Unit Testing
-
-Test individual components and agents.
-
-### Integration Testing
-
-Verify communication between agents.
-
-### Workflow Testing
-
-Test complete requirement-to-output pipelines.
-
-### AI Evaluation
-
-Measure:
-
-* Requirement accuracy
-* Code correctness
-* Task completion
-* Review accuracy
-* Test success rate
-
-### Failure Testing
-
-Test situations such as:
-
-* Invalid requirements
-* Missing information
-* LLM failures
-* Tool failures
-* Invalid generated code
-* Failed tests
-
----
-
-# 🌍 Real-World Applications
-
-The architecture can be adapted for:
-
-* AI Software Development Assistants
-* Automated Code Generation
-* Code Review Systems
-* Bug-Fixing Assistants
-* Automated Testing
-* Developer Productivity Tools
-* Enterprise Engineering Automation
-* Code Migration
-* Legacy Code Analysis
-* Documentation Generation
-
----
-
-# 📌 Resume-Ready Project Description
-
-**AI-Powered Multi-Agent Software Engineering System**
-
-> Developed an agentic AI software-engineering system that uses specialized AI agents to automate software development workflows including requirement analysis, planning, implementation, code review, and validation. Designed a modular multi-agent architecture with structured task decomposition, agent coordination, iterative feedback, and LLM-powered software generation.
-
-### Resume Bullet Points
-
-* Designed a **multi-agent AI architecture** that decomposes software requirements into structured development tasks and coordinates specialized agents across the development workflow.
-* Implemented an **LLM-powered software engineering pipeline** covering requirement analysis, planning, code generation, review, and validation.
-* Applied **agent orchestration, prompt engineering, structured outputs, and iterative feedback loops** to improve reliability of AI-generated software.
-* Designed the system using **modular and separation-of-concerns principles**, enabling individual agents and workflow stages to be independently extended and evaluated.
-
----
-
-# 🎓 What This Project Demonstrates
-
-This project goes beyond building a basic chatbot.
-
-It demonstrates the ability to work with:
-
-```text
-Generative AI
-      +
-LLM Applications
-      +
-AI Agents
-      +
-Multi-Agent Architecture
-      +
+Artificial Intelligence
+        +
+Multi-Agent Systems
+        +
 Software Engineering
-      +
-System Design
-      +
-Automation
-      +
-Testing & Validation
-```
-
-That combination makes the project particularly relevant to roles involving:
-
-* Software Engineering
-* AI/ML Engineering
-* Generative AI
-* AI Agents
-* Backend Engineering
-* Full-Stack AI Applications
-* Automation Engineering
-
----
-
-# 🔮 Future Vision
-
-The long-term goal is to evolve the project into an **AI-powered software engineering platform** where developers can provide a high-level requirement and receive assistance throughout the complete development lifecycle.
-
-```text
-                 Developer
-                     │
-                     ▼
-             Natural Language
-                Requirement
-                     │
-                     ▼
-              AI Supervisor
-                     │
-       ┌─────────────┼─────────────┐
-       ▼             ▼             ▼
-   Research       Planning      Architecture
-       │             │             │
-       └─────────────┼─────────────┘
-                     ▼
-                  Coding
-                     │
-                     ▼
-                  Testing
-                     │
-                     ▼
-                  Review
-                     │
-                     ▼
-             Improved Solution
+        +
+Backend Development
+        +
+Frontend Development
+        +
+Database Systems
 ```
 
 ---
 
-# ⭐ Project Vision
+# 👨‍💻 Author
 
-> **Build an intelligent AI software-engineering team where specialized agents collaborate to help developers move from requirements to reliable software faster and more systematically.**
+**Ayan Mondal**
+
+Master of Computer Applications
+National Institute of Technology Kurukshetra
+
+GitHub:
+https://github.com/909ayanmondal-stack
+
+LinkedIn:
+https://www.linkedin.com/in/ayan-mondal-74360a260
 
 ---
 
-## 📚 Related Concepts
+# 📄 License
 
-The architecture of this project belongs to the broader field of **multi-agent AI and agentic software engineering**, where specialized agents collaborate through structured workflows rather than relying on a single LLM interaction. Similar modern systems use planner/researcher/developer roles and iterative implementation workflows.
+This project is intended for educational, research, and portfolio purposes.
 
----
-
-## 📄 License
-
-This project is developed for **academic, learning, research, and portfolio purposes**.
+Add the appropriate license file if you decide to distribute the project under an open-source license.
