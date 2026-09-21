@@ -533,33 +533,6 @@ http://127.0.0.1:8000/docs
 
 ---
 
-# 📸 Screenshots
-
-Screenshots can be added here to demonstrate the running application.
-
-Recommended screenshots:
-
-* Landing page
-* Login/Register page
-* AI agent workflow/dashboard
-* Generated agent output
-
-Example:
-
-```markdown
-## Screenshots
-
-### Landing Page
-
-![Landing Page](screenshots/landing-page.png)
-
-### Dashboard
-
-![Dashboard](screenshots/dashboard.png)
-```
-
----
-
 # 🐳 Docker
 
 The project can be containerized using Docker for consistent development and deployment environments.
@@ -637,5 +610,3 @@ https://www.linkedin.com/in/ayan-mondal-74360a260
 # 📄 License
 
 This project is intended for educational, research, and portfolio purposes.
-
-Add the appropriate license file if you decide to distribute the project under an open-source license.
